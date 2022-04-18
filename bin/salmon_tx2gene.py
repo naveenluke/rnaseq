@@ -5,7 +5,9 @@ import argparse
 import glob
 import logging
 import os
-from collections import Counter, OrderedDict, defaultdict
+from collections import Counter
+from collections import defaultdict
+from collections import OrderedDict
 
 # Create a logger
 logging.basicConfig(format="%(name)s - %(asctime)s %(levelname)s: %(message)s")
