@@ -52,7 +52,9 @@ def fasta2gtf(fasta, output, biotype):
         biotype_attr = ""
         if biotype:
             biotype_attr = f' {biotype} "transgene";'
-        line = line_template.format(name=name, length=length, biotype=biotype_attr)
+        line = line_template.format(name=name,
+                                    length=length,
+                                    biotype=biotype_attr)
         lines.append(line)
 
     with open(output, "w") as f:
@@ -62,8 +64,7 @@ def fasta2gtf(fasta, output, biotype):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="""Convert a custom fasta (e.g. transgene)
-        to a GTF annotation."""
-    )
+        to a GTF annotation.""")
     parser.add_argument("fasta", type=str, help="Custom transgene sequence")
     parser.add_argument(
         "-o",
@@ -79,7 +80,8 @@ if __name__ == "__main__":
         dest="biotype",
         default="",
         type=str,
-        help="Name of gene biotype attribute to use in last column of GTF entry",
+        help=
+        "Name of gene biotype attribute to use in last column of GTF entry",
     )
     args = parser.parse_args()
     fasta2gtf(args.fasta, args.output, args.biotype)

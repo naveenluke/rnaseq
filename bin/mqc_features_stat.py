@@ -48,14 +48,13 @@ def mqc_feature_stat(bfile, features, outfile, sname=None):
 
     # Calculate percentage for each requested feature
     fpercent = {
-        f: (fcounts[f] / total_count) * 100 if f in fcounts else 0 for f in features
+        f: (fcounts[f] / total_count) * 100 if f in fcounts else 0
+        for f in features
     }
     if len(fpercent) == 0:
         logger.error(
             "Any of given features '{}' not found in the biocount file".format(
-                ", ".join(features), bfile
-            )
-        )
+                ", ".join(features), bfile))
         return
 
     # Prepare the output strings
@@ -73,8 +72,7 @@ def mqc_feature_stat(bfile, features, outfile, sname=None):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="""Calculate features percentage for biotype counts"""
-    )
+        description="""Calculate features percentage for biotype counts""")
     parser.add_argument("biocount", type=str, help="File with all biocounts")
     parser.add_argument(
         "-f",
@@ -84,7 +82,11 @@ if __name__ == "__main__":
         nargs="+",
         help="Features to count",
     )
-    parser.add_argument("-s", "--sample", dest="sample", type=str, help="Sample Name")
+    parser.add_argument("-s",
+                        "--sample",
+                        dest="sample",
+                        type=str,
+                        help="Sample Name")
     parser.add_argument(
         "-o",
         "--output",

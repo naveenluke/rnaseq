@@ -18,7 +18,8 @@ def parse_args(args=None):
         type=str,
         dest="STRANDEDNESS",
         default="unstranded",
-        help="Value for 'strandedness' in samplesheet. Must be one of 'unstranded', 'forward', 'reverse'.",
+        help=
+        "Value for 'strandedness' in samplesheet. Must be one of 'unstranded', 'forward', 'reverse'.",
     )
     parser.add_argument(
         "-r1",
@@ -41,14 +42,16 @@ def parse_args(args=None):
         "--single_end",
         dest="SINGLE_END",
         action="store_true",
-        help="Single-end information will be auto-detected but this option forces paired-end FastQ files to be treated as single-end so only read 1 information is included in the samplesheet.",
+        help=
+        "Single-end information will be auto-detected but this option forces paired-end FastQ files to be treated as single-end so only read 1 information is included in the samplesheet.",
     )
     parser.add_argument(
         "-sn",
         "--sanitise_name",
         dest="SANITISE_NAME",
         action="store_true",
-        help="Whether to further sanitise FastQ file name to get sample id. Used in conjunction with --sanitise_name_delimiter and --sanitise_name_index.",
+        help=
+        "Whether to further sanitise FastQ file name to get sample id. Used in conjunction with --sanitise_name_delimiter and --sanitise_name_index.",
     )
     parser.add_argument(
         "-sd",
@@ -64,7 +67,8 @@ def parse_args(args=None):
         type=int,
         dest="SANITISE_NAME_INDEX",
         default=1,
-        help="After splitting FastQ file name by --sanitise_name_delimiter all elements before this index (1-based) will be joined to create final sample name.",
+        help=
+        "After splitting FastQ file name by --sanitise_name_delimiter all elements before this index (1-based) will be joined to create final sample name.",
     )
     return parser.parse_args(args)
 
@@ -80,15 +84,14 @@ def fastq_dir_to_samplesheet(
     sanitise_name_delimiter="_",
     sanitise_name_index=1,
 ):
+
     def sanitize_sample(path, extension):
         """Retrieve sample id from filename"""
         sample = os.path.basename(path).replace(extension, "")
         if sanitise_name:
             sample = sanitise_name_delimiter.join(
-                os.path.basename(path).split(sanitise_name_delimiter)[
-                    :sanitise_name_index
-                ]
-            )
+                os.path.basename(path).split(sanitise_name_delimiter)
+                [:sanitise_name_index])
         return sample
 
     def get_fastqs(extension):
@@ -99,8 +102,8 @@ def fastq_dir_to_samplesheet(
         See also https://stackoverflow.com/questions/6773584/how-is-pythons-glob-glob-ordered
         """
         return sorted(
-            glob.glob(os.path.join(fastq_dir, f"*{extension}"), recursive=False)
-        )
+            glob.glob(os.path.join(fastq_dir, f"*{extension}"),
+                      recursive=False))
 
     read_dict = {}
 
@@ -131,7 +134,8 @@ def fastq_dir_to_samplesheet(
                     read_2 = ""
                     if idx < len(reads["R2"]):
                         read_2 = reads["R2"][idx]
-                    sample_info = ",".join([sample, read_1, read_2, strandedness])
+                    sample_info = ",".join(
+                        [sample, read_1, read_2, strandedness])
                     fout.write(f"{sample_info}\n")
     else:
         error_str = (
