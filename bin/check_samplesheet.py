@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
+import argparse
+import errno
 import os
 import sys
-import errno
-import argparse
 
 
 def parse_args(args=None):

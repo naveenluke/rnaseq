@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 from __future__ import print_function
-from collections import OrderedDict, defaultdict, Counter
-import logging
+
 import argparse
 import glob
+import logging
 import os
+from collections import Counter, OrderedDict, defaultdict
 
 # Create a logger
 logging.basicConfig(format="%(name)s - %(asctime)s %(levelname)s: %(message)s")

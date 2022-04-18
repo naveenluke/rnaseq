@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
+import argparse
+import glob
 import os
 import sys
-import glob
-import argparse
 
 
 def parse_args(args=None):
