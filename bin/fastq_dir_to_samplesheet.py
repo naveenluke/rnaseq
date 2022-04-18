@@ -100,8 +100,7 @@ def fastq_dir_to_samplesheet(
         See also https://stackoverflow.com/questions/6773584/how-is-pythons-glob-glob-ordered
         """
         return sorted(
-            glob.glob(os.path.join(
-                fastq_dir, f"*{extension}"), recursive=False)
+            glob.glob(os.path.join(fastq_dir, f"*{extension}"), recursive=False)
         )
 
     read_dict = {}
@@ -133,8 +132,7 @@ def fastq_dir_to_samplesheet(
                     read_2 = ""
                     if idx < len(reads["R2"]):
                         read_2 = reads["R2"][idx]
-                    sample_info = ",".join(
-                        [sample, read_1, read_2, strandedness])
+                    sample_info = ",".join([sample, read_1, read_2, strandedness])
                     fout.write(f"{sample_info}\n")
     else:
         error_str = (

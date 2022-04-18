@@ -67,8 +67,7 @@ def tx2gene(gtf, salmon, gene_id, extra, out):
                         extra_id = gene
                     else:
                         extra_id = row[extra]
-                    print("%s\t%s\t%s" %
-                          (row[txid], gene, extra_id), file=outh)
+                    print("%s\t%s\t%s" % (row[txid], gene, extra_id), file=outh)
 
 
 if __name__ == "__main__":

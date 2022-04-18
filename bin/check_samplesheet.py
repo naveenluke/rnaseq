@@ -47,7 +47,7 @@ def check_samplesheet(file_in, file_out):
     """
 
     sample_mapping_dict = {}
-    with open(file_in, "r", encoding='utf-8-sig') as fin:
+    with open(file_in, "r", encoding="utf-8-sig") as fin:
 
         # Check header
         MIN_COLS = 3
@@ -88,16 +88,16 @@ def check_samplesheet(file_in, file_out):
                     )
                     sample = sample.replace(" ", "_")
                 if not sample:
-                    print_error(
-                        "Sample entry has not been specified!", "Line", line)
+                    print_error("Sample entry has not been specified!", "Line", line)
 
                 # Check FastQ file extension
                 for fastq in [fastq_1, fastq_2]:
                     if fastq:
                         if fastq.find(" ") != -1:
-                            print_error(
-                                "FastQ file contains spaces!", "Line", line)
-                        if not fastq.endswith(".fastq.gz") and not fastq.endswith(".fq.gz"):
+                            print_error("FastQ file contains spaces!", "Line", line)
+                        if not fastq.endswith(".fastq.gz") and not fastq.endswith(
+                            ".fq.gz"
+                        ):
                             print_error(
                                 "FastQ file does not have extension '.fastq.gz' or '.fq.gz'!",
                                 "Line",
@@ -128,7 +128,8 @@ def check_samplesheet(file_in, file_out):
                     sample_info = ["1", fastq_1, fastq_2, strandedness]
                 else:
                     print_error(
-                        "Invalid combination of columns provided!", "Line", line)
+                        "Invalid combination of columns provided!", "Line", line
+                    )
 
                 # Create sample mapping dictionary = {sample: [[ single_end, fastq_1, fastq_2, strandedness ]]}
                 if sample not in sample_mapping_dict:
@@ -136,7 +137,8 @@ def check_samplesheet(file_in, file_out):
                 else:
                     if sample_info in sample_mapping_dict[sample]:
                         print_error(
-                            "Samplesheet contains duplicate rows!", "Line", line)
+                            "Samplesheet contains duplicate rows!", "Line", line
+                        )
                     else:
                         sample_mapping_dict[sample].append(sample_info)
 
@@ -146,8 +148,7 @@ def check_samplesheet(file_in, file_out):
         make_dir(out_dir)
         with open(file_out, "w") as fout:
             fout.write(
-                ",".join(["sample", "single_end", "fastq_1",
-                         "fastq_2", "strandedness"])
+                ",".join(["sample", "single_end", "fastq_1", "fastq_2", "strandedness"])
                 + "\n"
             )
             for sample in sorted(sample_mapping_dict.keys()):

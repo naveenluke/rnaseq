@@ -52,8 +52,7 @@ def fasta2gtf(fasta, output, biotype):
         biotype_attr = ""
         if biotype:
             biotype_attr = f' {biotype} "transgene";'
-        line = line_template.format(
-            name=name, length=length, biotype=biotype_attr)
+        line = line_template.format(name=name, length=length, biotype=biotype_attr)
         lines.append(line)
 
     with open(output, "w") as f:

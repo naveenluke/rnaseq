@@ -85,8 +85,7 @@ if __name__ == "__main__":
         nargs="+",
         help="Features to count",
     )
-    parser.add_argument("-s", "--sample", dest="sample",
-                        type=str, help="Sample Name")
+    parser.add_argument("-s", "--sample", dest="sample", type=str, help="Sample Name")
     parser.add_argument(
         "-o",
         "--output",
